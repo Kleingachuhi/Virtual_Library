@@ -117,7 +117,7 @@ When you run the program, you'll see:
 - **Users**: `id`, `username`, `card_number`  
 - **Loans**: `book_id`, `user_id`, `borrowed_at`, `returned_at`  
 
-##  Pro Tips and guidance -->
+##  Pro Tips and guidance --
 - Use `List` before updating/deleting to check IDs
 - Loans automatically record borrow dates
 - Card numbers are 6-digit auto-generated IDs
