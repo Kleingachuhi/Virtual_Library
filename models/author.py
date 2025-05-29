@@ -3,7 +3,7 @@ from sqlalchemy.orm import relationship
 from .base import Base 
 
 class Author(Base):
-    __tablename = 'authors'
+    __tablename__ = 'authors'
 
     id = Column(Integer, primary_key=True)
     first_name = Column(String, nullable=False)
