@@ -1,4 +1,4 @@
-from database import SessionLocal
+from my_database_related.database import SessionLocal
 from models.loan import Loan
 from models.book import Book
 from models.user import User

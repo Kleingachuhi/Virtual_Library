@@ -1,4 +1,4 @@
-from database import SessionLocal
+from my_database_related.database import SessionLocal
 from models.author import Author
 
 def add_author(first_name, last_name, birth_year=None):
