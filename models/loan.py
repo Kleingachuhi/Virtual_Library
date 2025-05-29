@@ -1,5 +1,6 @@
 from sqlalchemy import Column, Integer, ForeignKey, DateTime
 from models.base import Base
+from sqlalchemy.orm import relationship
 from datetime import datetime
 
 
@@ -11,3 +12,6 @@ class Loan(Base):
     user_id = Column(Integer, ForeignKey('users.id'))
     borrowed_at = Column(DateTime, default=datetime.utcnow)
     returned_at = Column(DateTime, nullable=True)
+
+    user = relationship("User", back_populates="loans")
+    book = relationship("Book", back_populates="loans")
