@@ -11,12 +11,10 @@ def delete_author(author_id):
         print(f"Author with ID {author_id} not found.")
         session.close()
         return
-    
     session.delete(author)
     session.commit()
     print(f"Author ID {author_id} deleted.")
     session.close()
-
 
 def delete_book(book_id):
     session = SessionLocal()
@@ -25,12 +23,10 @@ def delete_book(book_id):
         print(f"Book with ID {book_id} not found.")
         session.close()
         return
-    
     session.delete(book)
     session.commit()
     print(f"Book ID {book_id} deleted.")
     session.close()
-
 
 def delete_user(user_id):
     session = SessionLocal()
@@ -39,12 +35,10 @@ def delete_user(user_id):
         print(f"User with ID {user_id} not found.")
         session.close()
         return
-    
     session.delete(user)
     session.commit()
     print(f"User ID {user_id} deleted.")
     session.close()
-
 
 def delete_loan(loan_id):
     session = SessionLocal()
@@ -53,7 +47,6 @@ def delete_loan(loan_id):
         print(f"Loan with ID {loan_id} not found.")
         session.close()
         return
-    
     session.delete(loan)
     session.commit()
     print(f"Loan ID {loan_id} deleted.")

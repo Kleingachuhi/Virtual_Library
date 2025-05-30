@@ -8,6 +8,7 @@ from library_functionality.list_authors import list_authors
 from library_functionality.list_books import list_books
 from library_functionality.list_users import list_users
 from library_functionality.list_loans import list_loans
+from library_functionality.return_loan import return_loan
 
 def main_menu():
     print("\n--- Virtual Library CLI ---")
@@ -15,7 +16,8 @@ def main_menu():
     print("2. Update record")
     print("3. Delete record")
     print("4. List records")
-    print("5. Exit")
+    print("5. Return a loan")  
+    print("6. Exit")  
 
 def select_entity():
     print("\nSelect entity:")
@@ -23,8 +25,7 @@ def select_entity():
     print("2. Book")
     print("3. User")
     print("4. Loan")
-    choice = input("Enter choice: ")
-    return choice
+    return input("Enter choice: ")
 
 def main():
     while True:
@@ -52,15 +53,56 @@ def main():
             else:
                 print("Invalid entity choice.")
 
-        elif choice == '2':
+        elif choice == '2': 
             entity = select_entity()
-            print("Update functionality coming soon!")
+            if entity == '1':
+                author_id = int(input("Author ID to update: "))
+                first = input("New first name (press Enter to skip): ")
+                last = input("New last name (press Enter to skip): ")
+                birth = input("New birth year (press Enter to skip): ")
+                update_author(author_id, first or None, last or None, birth or None)
+            elif entity == '2':
+                book_id = int(input("Book ID to update: "))
+                title = input("New title (press Enter to skip): ")
+                author_id = input("New author ID (press Enter to skip): ")
+                update_book(book_id, title or None, int(author_id) if author_id else None)
+            elif entity == '3':
+                user_id = int(input("User ID to update: "))
+                username = input("New username (press Enter to skip): ")
+                card_number = input("New card number (press Enter to skip): ")
+                update_user(user_id, username or None, card_number or None)
+            elif entity == '4':
+                loan_id = int(input("Loan ID to update: "))
+                book_id = input("New Book ID (press Enter to skip): ")
+                user_id = input("New User ID (press Enter to skip): ")
+                returned = input("Returned date (YYYY-MM-DD or leave empty if not returned): ")
+                update_loan(
+                    loan_id,
+                    int(book_id) if book_id else None,
+                    int(user_id) if user_id else None,
+                    returned_at=returned if returned else None
+                )
+            else:
+                print("Invalid entity choice.")
 
-        elif choice == '3':  
+        elif choice == '3': 
             entity = select_entity()
-            print("Delete functionality coming soon!")
+            if entity == '1':
+                author_id = int(input("Author ID to delete: "))
+                delete_author(author_id)
+            elif entity == '2':
+                book_id = int(input("Book ID to delete: "))
+                delete_book(book_id)
+            elif entity == '3':
+                user_id = int(input("User ID to delete: "))
+                delete_user(user_id)
+            elif entity == '4':
+                loan_id = int(input("Loan ID to delete: "))
+                delete_loan(loan_id)
+            else:
+                print("Invalid entity choice.")
 
-        elif choice == '4':  
+        elif choice == '4':
             entity = select_entity()
             if entity == '1':
                 list_authors()
@@ -74,6 +116,10 @@ def main():
                 print("Invalid entity choice.")
 
         elif choice == '5':
+            loan_id = int(input("Enter loan ID to return: "))
+            return_loan(loan_id)
+
+        elif choice == '6':
             print("Goodbye!")
             break
         else:
