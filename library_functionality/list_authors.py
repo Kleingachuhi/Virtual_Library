@@ -5,8 +5,5 @@ def list_authors():
     session = SessionLocal()
     authors = session.query(Author).all()
     for author in authors:
-        print(f"ID: {author.id}, Name: {author.first_name} {author.last_name}, Born: {author.birth_year}")
+        print(f"ID: {author.id}, Name: {author.first_name} {author.last_name}, Born: {author.birth_year}, Books Written: {len(author.books)}")
     session.close()
-
-if __name__ == "__main__":
-    list_authors()

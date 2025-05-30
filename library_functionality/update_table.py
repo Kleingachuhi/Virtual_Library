@@ -18,7 +18,7 @@ def update_author(author_id, first_name=None, last_name=None, birth_year=None):
     print(f"Author ID {author_id} updated.")
     session.close()
 
-def update_book(book_id, title=None, author_id=None, genre=None, publication_year=None):
+def update_book(book_id, title=None, author_id=None):
     session = SessionLocal()
     book = session.query(Book).filter_by(id=book_id).first()
     if not book:
@@ -27,8 +27,6 @@ def update_book(book_id, title=None, author_id=None, genre=None, publication_yea
         return
     if title: book.title = title
     if author_id: book.author_id = author_id
-    if genre: book.genre = genre
-    if publication_year: book.publication_year = publication_year
     session.commit()
     print(f"Book ID {book_id} updated.")
     session.close()
@@ -40,16 +38,11 @@ def update_user(user_id, username=None, card_number=None):
         print(f"User with ID {user_id} not found.")
         session.close()
         return
-
-    if username:
-        user.username = username
-    if card_number:
-        user.card_number = card_number
-
+    if username: user.username = username
+    if card_number: user.card_number = card_number
     session.commit()
     print(f"User ID {user_id} updated.")
     session.close()
-
 
 def update_loan(loan_id, book_id=None, user_id=None, borrowed_at=None, returned_at=None):
     session = SessionLocal()
